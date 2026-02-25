@@ -140,7 +140,7 @@
       "outbounds": [
         "auto",
         "direct",
-        "All"
+        "{all}"
       ]
     },
     {
@@ -342,7 +342,7 @@
       ]
     },
     {
-      "tag": "All",
+      "tag": "Proxies",
       "type": "selector",
       "outbounds": [
         "{all}"
@@ -355,7 +355,7 @@
       "tag": "HongKong",
       "type": "urltest",
       "outbounds": [
-        "All"
+        "Proxies"
       ],
       "filter": [
         {"action": "include", "keywords": "🇭🇰|HK|hk|香港|港|HongKong"}
@@ -368,7 +368,7 @@
       "tag": "TaiWan",
       "type": "urltest",
       "outbounds": [
-        "All"
+        "Proxies"
       ],
       "filter": [
         {"action": "include", "keywords": "🇹🇼|TW|tw|台灣|台湾|台|Taiwan"}
@@ -381,7 +381,7 @@
       "tag": "Singapore",
       "type": "urltest",
       "outbounds": [
-        "All"
+        "Proxies"
       ],
       "filter": [
         {"action": "include", "keywords": "🇸🇬|SG|sg|新加坡|狮|Singapore"}
@@ -394,7 +394,7 @@
       "tag": "Japan",
       "type": "urltest",
       "outbounds": [
-        "All"
+        "Proxies"
       ],
       "filter": [
         {"action": "include", "keywords": "🇯🇵|JP|jp|日本|日|Japan"}
@@ -407,7 +407,7 @@
       "tag": "America",
       "type": "urltest",
       "outbounds": [
-        "All"
+        "Proxies"
       ],
       "filter": [
         {"action": "include", "keywords": "🇺🇸|US|us|美国|美|United States"}
@@ -420,7 +420,7 @@
       "tag": "Others",
       "type": "selector",
       "outbounds": [
-        "All",
+        "Proxies",
         "direct"
       ],
       "filter": [
@@ -431,7 +431,7 @@
       "tag": "auto",
       "type": "urltest",
       "outbounds": [
-        "All"
+        "Proxies"
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "3m",
