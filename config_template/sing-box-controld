@@ -1,0 +1,284 @@
+{
+  "log": {
+    "disabled": false,
+    "level": "debug",
+    "timestamp": true
+  },
+  "dns": {
+    "independent_cache": true,
+    "rules": [
+      {
+        "rule_set": "geosite-google-gemini",
+        "server": "controld"
+      },
+      {
+        "rule_set": "geosite-apple-intelligence",
+        "server": "controld"
+      },
+      {
+        "clash_mode": "direct",
+        "server": "tx"
+      },
+      {
+        "clash_mode": "global",
+        "server": "controld"
+      },
+      {
+        "rule_set": "geosite-cn",
+        "server": "tx"
+      },
+      {
+        "type": "logical",
+        "mode": "and",
+        "rules": [
+          {
+            "rule_set": "geosite-geolocation-!cn",
+            "invert": true
+          },
+          {
+            "rule_set": "geoip-cn"
+          }
+        ],
+        "server": "tx",
+        "client_subnet": "1.0.1.0/24"
+      }
+    ],
+    "servers": [
+      {
+        "tag": "tx",
+        "type": "https",
+        "server": "223.5.5.5",
+        "server_port": 443,
+        "path": "/dns-query",
+        "detour": "direct",
+        "tls": {
+          "enabled": true,
+          "server_name": "dns.alidns.com"
+        }
+      },
+      {
+        "tag": "controld",
+        "type": "h3",
+        "server": "dns.controld.com",
+        "server_port": 443,
+        "path": "/fmgnh2zg4y",
+        "domain_resolver": "tx",
+        "detour": "direct",
+        "tls": {
+          "enabled": true,
+          "alpn": ["h3"],
+          "server_name": "dns.controld.com"
+        }
+      },
+      {
+        "tag": "controld_https",
+        "type": "https",
+        "server": "dns.controld.com",
+        "server_port": 443,
+        "path": "/fmgnh2zg4y",
+        "domain_resolver": "tx",
+        "detour": "direct",
+        "tls": {
+          "enabled": true,
+          "server_name": "dns.controld.com"
+        }
+      }
+    ],
+    "strategy": "ipv4_only",
+    "final": "controld_https"
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true
+    },
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "secret": "",
+      "external_ui": "ui",
+      "external_ui_download_url": "https://github.com/MetaCubeX/metacubexd/archive/gh-pages.zip",
+      "external_ui_download_detour": "urltest"
+    }
+  },
+  "inbounds": [
+    {
+      "address": [
+        "172.19.0.1/30",
+        "fdfe:dcba:9876::1/126"
+      ],
+      "auto_route": true,
+      "endpoint_independent_nat": true,
+      "mtu": 1500,
+      "strict_route": false,
+      "sniff": true,
+      "stack": "mixed",
+      "type": "tun"
+    }
+  ],
+  "route": {
+    "auto_detect_interface": true,
+    "rule_set": [
+      {
+        "format": "binary",
+        "tag": "geoip-cn",
+        "type": "remote",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs",
+        "download_detour": "urltest",
+        "update_interval": "300m"
+      },
+      {
+        "format": "binary",
+        "tag": "geosite-cn",
+        "type": "remote",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-geolocation-cn.srs",
+        "download_detour": "urltest",
+        "update_interval": "300m"
+      },
+      {
+        "format": "binary",
+        "tag": "geosite-geolocation-!cn",
+        "type": "remote",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-geolocation-!cn.srs",
+        "download_detour": "urltest",
+        "update_interval": "300m"
+      },
+      {
+        "format": "binary",
+        "tag": "geosite-google",
+        "type": "remote",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-google.srs",
+        "download_detour": "urltest",
+        "update_interval": "300m"
+      },
+      {
+        "format": "binary",
+        "tag": "geosite-google-gemini",
+        "type": "remote",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-google-gemini.srs",
+        "download_detour": "urltest",
+        "update_interval": "300m"
+      },
+      {
+        "format": "binary",
+        "tag": "geosite-facebook",
+        "type": "remote",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-facebook.srs",
+        "download_detour": "urltest",
+        "update_interval": "300m"
+      },
+      {
+        "format": "binary",
+        "tag": "geosite-whatsapp",
+        "type": "remote",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-whatsapp.srs",
+        "download_detour": "urltest",
+        "update_interval": "300m"
+      },
+      {
+        "format": "binary",
+        "tag": "geosite-telegram",
+        "type": "remote",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-telegram.srs",
+        "download_detour": "urltest",
+        "update_interval": "300m"
+      },
+      {
+        "format": "binary",
+        "tag": "geosite-threads",
+        "type": "remote",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-threads.srs",
+        "download_detour": "urltest",
+        "update_interval": "300m"
+      },
+      {
+        "format": "binary",
+        "tag": "geosite-apple-intelligence",
+        "type": "remote",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-apple-intelligence.srs",
+        "download_detour": "urltest",
+        "update_interval": "300m"
+      },
+      {
+        "format": "binary",
+        "tag": "geosite-x",
+        "type": "remote",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-x.srs",
+        "download_detour": "urltest",
+        "update_interval": "300m"
+      },
+      {
+        "format": "binary",
+        "tag": "geosite-xai",
+        "type": "remote",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-xai.srs",
+        "download_detour": "urltest",
+        "update_interval": "300m"
+      },
+      {
+        "format": "binary",
+        "tag": "geosite-twitter",
+        "type": "remote",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-twitter.srs",
+        "download_detour": "urltest",
+        "update_interval": "300m"
+      },
+      {
+        "format": "binary",
+        "tag": "geosite-tvb",
+        "type": "remote",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-tvb.srs",
+        "download_detour": "urltest",
+        "update_interval": "300m"
+      }
+    ],
+    "rules": [
+      {
+        "action": "sniff"
+      },
+      {
+        "action": "hijack-dns",
+        "protocol": "dns"
+      },
+      {
+        "action": "resolve",
+        "strategy": "prefer_ipv4"
+      },
+      {
+        "rule_set": [
+          "geosite-google",
+          "geosite-google-gemini",
+          "geosite-facebook",
+          "geosite-whatsapp",
+          "geosite-telegram",
+          "geosite-threads",
+          "geosite-apple-intelligence",
+          "geosite-x",
+          "geosite-xai",
+          "geosite-twitter",
+          "geosite-tvb"
+        ],
+        "outbound": "urltest"
+      },
+      {
+        "clash_mode": "direct",
+        "outbound": "direct"
+      },
+      {
+        "clash_mode": "global",
+        "outbound": "select"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "direct"
+      },
+      {
+        "outbound": "direct",
+        "rule_set": "geoip-cn"
+      },
+      {
+        "outbound": "direct",
+        "rule_set": "geosite-cn"
+      }
+    ],
+    "final": "select"
+  }
+}
