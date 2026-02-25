@@ -349,8 +349,7 @@
         "direct"
       ],
       "filter": [
-        {"action": "include", "keywords": "🇭🇰|HK|hk|香港|港|HongKong"},
-        {"action": "exclude", "keywords": "最新网址|fliggycloud|剩余流量|距离下次重置|套餐到期"}
+        {"action": "include", "keywords": "🇭🇰|HK|hk|香港|港|HongKong"}
       ]
     },
     {
@@ -361,8 +360,7 @@
         "direct"
       ],
       "filter": [
-        {"action": "include", "keywords": "🇹🇼|TW|tw|台灣|台湾|台|Taiwan"},
-        {"action": "exclude", "keywords": "最新网址|fliggycloud|剩余流量|距离下次重置|套餐到期"}
+        {"action": "include", "keywords": "🇹🇼|TW|tw|台灣|台湾|台|Taiwan"}
       ]
     },
     {
@@ -373,8 +371,7 @@
         "direct"
       ],
       "filter": [
-        {"action": "include", "keywords": "🇸🇬|SG|sg|新加坡|狮|Singapore"},
-        {"action": "exclude", "keywords": "最新网址|fliggycloud|剩余流量|距离下次重置|套餐到期"}
+        {"action": "include", "keywords": "🇸🇬|SG|sg|新加坡|狮|Singapore"}
       ]
     },
     {
@@ -385,8 +382,7 @@
         "direct"
       ],
       "filter": [
-        {"action": "include", "keywords": "🇯🇵|JP|jp|日本|日|Japan"},
-        {"action": "exclude", "keywords": "最新网址|fliggycloud|剩余流量|距离下次重置|套餐到期"}
+        {"action": "include", "keywords": "🇯🇵|JP|jp|日本|日|Japan"}
       ]
     },
     {
@@ -397,8 +393,7 @@
         "direct"
       ],
       "filter": [
-        {"action": "include", "keywords": "🇺🇸|US|us|美国|美|United States"},
-        {"action": "exclude", "keywords": "最新网址|fliggycloud|剩余流量|距离下次重置|套餐到期"}
+        {"action": "include", "keywords": "🇺🇸|US|us|美国|美|United States"}
       ]
     },
     {
