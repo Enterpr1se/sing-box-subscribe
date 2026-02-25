@@ -140,7 +140,7 @@
       "outbounds": [
         "auto",
         "direct",
-        "All"
+        "{all}"
       ]
     },
     {
@@ -342,79 +342,69 @@
       ]
     },
     {
-      "tag": "All",
-      "type": "selector",
-      "outbounds": [
-        "{all}"
-      ],
-      "filter": [
-        {"action": "exclude", "keywords": "您当前的客户端版本较低|请下载新版v2rayNG客户端|访问我们的官方网站|根据您的设备和系统进行下载|客户端更新成功后|需删除旧的订阅链接|重新复制新的订阅链接|将其导入到客户端使用|网站|地址|剩余|过期|时间|有效"}
-      ]
-    },
-    {
       "tag": "HongKong",
       "type": "selector",
       "outbounds": [
-        "All",
+        "{all}",
         "direct"
       ],
       "filter": [
-        {"action": "include", "keywords": "🇭🇰|HK|hk|香港|港|HongKong"}
+        {"action": "include", "keywords": ["🇭🇰|HK|hk|香港|港|HongKong"]}
       ]
     },
     {
       "tag": "TaiWan",
       "type": "selector",
       "outbounds": [
-        "All",
+        "{all}",
         "direct"
       ],
       "filter": [
-        {"action": "include", "keywords": "🇹🇼|TW|tw|台灣|台湾|台|Taiwan"}
+        {"action": "include", "keywords": ["🇹🇼|TW|tw|台灣|台湾|台|Taiwan"]}
       ]
     },
     {
       "tag": "Singapore",
       "type": "selector",
       "outbounds": [
-        "All",
+        "{all}",
         "direct"
       ],
       "filter": [
-        {"action": "include", "keywords": "🇸🇬|SG|sg|新加坡|狮|Singapore"}
+        {"action": "include", "keywords": ["🇸🇬|SG|sg|新加坡|狮|Singapore"]}
       ]
     },
     {
       "tag": "Japan",
       "type": "selector",
       "outbounds": [
-        "All",
+        "{all}",
         "direct"
       ],
       "filter": [
-        {"action": "include", "keywords": "🇯🇵|JP|jp|日本|日|Japan"}
+        {"action": "include", "keywords": ["🇯🇵|JP|jp|日本|日|Japan"]}
       ]
     },
     {
       "tag": "America",
       "type": "selector",
       "outbounds": [
-        "All",
+        "{all}",
         "direct"
       ],
       "filter": [
-        {"action": "include", "keywords": "🇺🇸|US|us|美国|美|United States"}
+        {"action": "include", "keywords": ["🇺🇸|US|us|美国|美|United States"]}
       ]
     },
     {
       "tag": "Others",
       "type": "selector",
       "outbounds": [
-        "All",
+        "{all}",
         "direct"
       ],
       "filter": [
-        {"action": "exclude", "keywords": "🇭🇰|HK|hk|香港|香|🇹🇼|TW|tw|台灣|台湾|台|🇸🇬|SG|sg|新加坡|狮|🇯🇵|JP|jp|日本|日|🇺🇸|US|us|美国|美"}
+        {"action": "exclude", "keywords": ["🇭🇰|HK|hk|香港|香|🇹🇼|TW|tw|台灣|台湾|台|🇸🇬|SG|sg|新加坡|狮|🇯🇵|JP|jp|日本|日|🇺🇸|US|us|美国|美"]}
       ]
     },
     {
@@ -424,7 +414,7 @@
         "{all}"
       ],
       "filter": [
-        {"action": "exclude", "keywords": "您当前的客户端版本较低|请下载新版v2rayNG客户端|访问我们的官方网站|根据您的设备和系统进行下载|客户端更新成功后|需删除旧的订阅链接|重新复制新的订阅链接|将其导入到客户端使用|网站|地址|剩余|过期|时间|有效"}
+        {"action": "exclude", "keywords": ["网站|地址|剩余|过期|时间|有效|客户端版本|请下载|官方网站"]}
       ],
       "url": "http://www.gstatic.com/generate_204",
       "interval": "10m",
