@@ -342,23 +342,14 @@
       ]
     },
     {
-      "tag": "Proxies",
-      "type": "selector",
+      "tag": "HongKong",
+      "type": "urltest",
       "outbounds": [
         "{all}"
       ],
       "filter": [
-        {"action": "exclude", "keywords": "最新网址：fliggycloud.cc|剩余流量：239.94 GB|距离下次重置剩余：27 天|套餐到期：2029-02-24|您当前的客户端版本较低|请下载新版v2rayNG客户端|访问我们的官方网站|根据您的设备和系统进行下载|客户端更新成功后|需删除旧的订阅链接|重新复制新的订阅链接|将其导入到客户端使用|网站|地址|剩余|过期|时间|有效|v2rayNG|客户端|下载|官方网站|更新|订阅链接|用户代理"}
-      ]
-    },
-    {
-      "tag": "HongKong",
-      "type": "urltest",
-      "outbounds": [
-        "Proxies"
-      ],
-      "filter": [
-        {"action": "include", "keywords": "🇭🇰|HK|hk|香港|港|HongKong"}
+        {"action": "include", "keywords": "🇭🇰|HK|hk|香港|港|HongKong"},
+        {"action": "exclude", "keywords": "最新网址：fliggycloud.cc|剩余流量：239.94 GB|距离下次重置剩余：27 天|套餐到期：2029-02-24|fliggycloud"}
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "3m",
@@ -368,10 +359,11 @@
       "tag": "TaiWan",
       "type": "urltest",
       "outbounds": [
-        "Proxies"
+        "{all}"
       ],
       "filter": [
-        {"action": "include", "keywords": "🇹🇼|TW|tw|台灣|台湾|台|Taiwan"}
+        {"action": "include", "keywords": "🇹🇼|TW|tw|台灣|台湾|台|Taiwan"},
+        {"action": "exclude", "keywords": "最新网址：fliggycloud.cc|剩余流量：239.94 GB|距离下次重置剩余：27 天|套餐到期：2029-02-24|fliggycloud"}
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "3m",
@@ -381,10 +373,11 @@
       "tag": "Singapore",
       "type": "urltest",
       "outbounds": [
-        "Proxies"
+        "{all}"
       ],
       "filter": [
-        {"action": "include", "keywords": "🇸🇬|SG|sg|新加坡|狮|Singapore"}
+        {"action": "include", "keywords": "🇸🇬|SG|sg|新加坡|狮|Singapore"},
+        {"action": "exclude", "keywords": "最新网址：fliggycloud.cc|剩余流量：239.94 GB|距离下次重置剩余：27 天|套餐到期：2029-02-24|fliggycloud"}
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "3m",
@@ -394,10 +387,11 @@
       "tag": "Japan",
       "type": "urltest",
       "outbounds": [
-        "Proxies"
+        "{all}"
       ],
       "filter": [
-        {"action": "include", "keywords": "🇯🇵|JP|jp|日本|日|Japan"}
+        {"action": "include", "keywords": "🇯🇵|JP|jp|日本|日|Japan"},
+        {"action": "exclude", "keywords": "最新网址：fliggycloud.cc|剩余流量：239.94 GB|距离下次重置剩余：27 天|套餐到期：2029-02-24|fliggycloud"}
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "3m",
@@ -407,10 +401,11 @@
       "tag": "America",
       "type": "urltest",
       "outbounds": [
-        "Proxies"
+        "{all}"
       ],
       "filter": [
-        {"action": "include", "keywords": "🇺🇸|US|us|美国|美|United States"}
+        {"action": "include", "keywords": "🇺🇸|US|us|美国|美|United States"},
+        {"action": "exclude", "keywords": "最新网址：fliggycloud.cc|剩余流量：239.94 GB|距离下次重置剩余：27 天|套餐到期：2029-02-24|fliggycloud"}
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "3m",
@@ -420,18 +415,21 @@
       "tag": "Others",
       "type": "selector",
       "outbounds": [
-        "Proxies",
+        "{all}",
         "direct"
       ],
       "filter": [
-        {"action": "exclude", "keywords": "🇭🇰|HK|hk|香港|香|🇹🇼|TW|tw|台灣|台湾|台|🇸🇬|SG|sg|新加坡|狮|🇯🇵|JP|jp|日本|日|🇺🇸|US|us|美国|美"}
+        {"action": "exclude", "keywords": "🇭🇰|HK|hk|香港|香|🇹🇼|TW|tw|台灣|台湾|台|🇸🇬|SG|sg|新加坡|狮|🇯🇵|JP|jp|日本|日|🇺🇸|US|us|美国|美|最新网址：fliggycloud.cc|剩余流量：239.94 GB|距离下次重置剩余：27 天|套餐到期：2029-02-24|fliggycloud"}
       ]
     },
     {
       "tag": "auto",
       "type": "urltest",
       "outbounds": [
-        "Proxies"
+        "{all}"
+      ],
+      "filter": [
+        {"action": "exclude", "keywords": "最新网址：fliggycloud.cc|剩余流量：239.94 GB|距离下次重置剩余：27 天|套餐到期：2029-02-24|fliggycloud"}
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "3m",
