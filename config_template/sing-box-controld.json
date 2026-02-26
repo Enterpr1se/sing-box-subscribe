@@ -356,7 +356,7 @@
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "3m",
-      "tolerance": 200
+      "tolerance": 50
     },
     {
       "tag": "TaiWan",
@@ -370,7 +370,7 @@
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "3m",
-      "tolerance": 200
+      "tolerance": 50
     },
     {
       "tag": "Singapore",
@@ -384,7 +384,7 @@
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "3m",
-      "tolerance": 200
+      "tolerance": 50
     },
     {
       "tag": "Japan",
@@ -398,7 +398,7 @@
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "3m",
-      "tolerance": 200
+      "tolerance": 50
     },
     {
       "tag": "America",
@@ -412,7 +412,7 @@
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "3m",
-      "tolerance": 200
+      "tolerance": 50
     },
     {
       "tag": "Others",
@@ -436,7 +436,7 @@
       ],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "3m",
-      "tolerance": 200
+      "tolerance": 50
     },
     {
       "type": "direct",
