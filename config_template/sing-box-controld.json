@@ -156,11 +156,18 @@
     {
       "tag": "direct",
       "type": "direct",
-      "domain_resolver": "aliDns"
+      "domain_resolver": {
+        "server": "aliDns",
+        "rewrite_ttl": 60
+      }
     }
   ],
   "route": {
     "auto_detect_interface": true,
+    "default_domain_resolver": {
+      "server": "local",
+      "rewrite_ttl": 60
+    },
     "rule_set": [
       {
         "format": "binary",
