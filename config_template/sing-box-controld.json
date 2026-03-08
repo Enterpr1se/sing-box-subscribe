@@ -129,13 +129,23 @@
       "outbounds": [
         "⚡ Auto Select",
         "🖐️ Manual Switch",
+        "AI Services",
+        "Streaming",
+        "Youtube",
+        "Google",
+        "Telegram",
+        "🇭🇰 Hong Kong",
+        "🇯🇵 Japan",
+        "🇰🇷 Korea",
+        "🇸🇬 Singapore",
+        "🇺🇸 United States",
         "direct"
       ]
     },
     {
       "tag": "⚡ Auto Select",
       "type": "urltest",
-      "outbounds": ["direct"],
+      "outbounds": ["direct"],  // 之後加匯入節點 tag
       "url": "https://www.gstatic.com/generate_204",
       "interval": "600s",
       "tolerance": 50
@@ -143,7 +153,7 @@
     {
       "tag": "🖐️ Manual Switch",
       "type": "selector",
-      "outbounds": ["direct"]
+      "outbounds": ["direct"]  // 之後加匯入節點 tag
     },
     {
       "tag": "urltest",
@@ -160,6 +170,73 @@
         "server": "aliDns",
         "rewrite_ttl": 60
       }
+    },
+    // 服務分類（之後替換真實節點 tag）
+    {
+      "tag": "AI Services",
+      "type": "selector",
+      "outbounds": ["direct"]  // 加 AI 專用節點
+    },
+    {
+      "tag": "Streaming",
+      "type": "selector",
+      "outbounds": ["direct"]  // 加流媒體節點
+    },
+    {
+      "tag": "Youtube",
+      "type": "selector",
+      "outbounds": ["direct"]
+    },
+    {
+      "tag": "Google",
+      "type": "selector",
+      "outbounds": ["direct"]
+    },
+    {
+      "tag": "Telegram",
+      "type": "selector",
+      "outbounds": ["direct"]
+    },
+    // 地區分組（之後替換真實 tag）
+    {
+      "tag": "🇭🇰 Hong Kong",
+      "type": "urltest",
+      "outbounds": ["direct"],  // 加香港節點
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "600s",
+      "tolerance": 50
+    },
+    {
+      "tag": "🇯🇵 Japan",
+      "type": "urltest",
+      "outbounds": ["direct"],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "600s",
+      "tolerance": 50
+    },
+    {
+      "tag": "🇰🇷 Korea",
+      "type": "urltest",
+      "outbounds": ["direct"],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "600s",
+      "tolerance": 50
+    },
+    {
+      "tag": "🇸🇬 Singapore",
+      "type": "urltest",
+      "outbounds": ["direct"],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "600s",
+      "tolerance": 50
+    },
+    {
+      "tag": "🇺🇸 United States",
+      "type": "urltest",
+      "outbounds": ["direct"],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "600s",
+      "tolerance": 50
     }
   ],
   "route": {
