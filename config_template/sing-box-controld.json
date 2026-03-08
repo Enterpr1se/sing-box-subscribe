@@ -137,13 +137,21 @@
       "type": "urltest",
       "outbounds": ["direct"],
       "url": "https://www.gstatic.com/generate_204",
-      "interval": "180s",
+      "interval": "600s",
       "tolerance": 50
     },
     {
       "tag": "🖐️ Manual Switch",
       "type": "selector",
       "outbounds": ["direct"]
+    },
+    {
+      "tag": "urltest",
+      "type": "urltest",
+      "outbounds": ["direct"],
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "600s",
+      "tolerance": 50
     },
     {
       "tag": "direct",
