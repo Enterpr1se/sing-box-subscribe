@@ -129,18 +129,13 @@
       "outbounds": [
         "⚡ Auto Select",
         "🖐️ Manual Switch",
-        "AI Services",
-        "Streaming",
-        "Google Services",
-        "Youtube",
-        "Telegram",
         "direct"
       ]
     },
     {
       "tag": "⚡ Auto Select",
       "type": "urltest",
-      "outbounds": ["direct"],  // 匯入節點後加 tag 進去
+      "outbounds": ["direct"],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "600s",
       "tolerance": 50
@@ -148,57 +143,15 @@
     {
       "tag": "🖐️ Manual Switch",
       "type": "selector",
-      "outbounds": ["direct"]  // 匯入後加所有節點 tag 進去
+      "outbounds": ["direct"]
     },
     {
       "tag": "urltest",
       "type": "urltest",
-      "outbounds": ["direct"],  // 匯入後加節點 tag
+      "outbounds": ["direct"],
       "url": "https://www.gstatic.com/generate_204",
       "interval": "600s",
       "tolerance": 50
-    },
-    // 地區分類（匯入後把對應 tag 加進去）
-    {
-      "tag": "🇭🇰 Hong Kong",
-      "type": "selector",
-      "outbounds": ["direct"]  // 加香港節點 tag
-    },
-    {
-      "tag": "🇯🇵 Japan",
-      "type": "selector",
-      "outbounds": ["direct"]  // 加日本節點 tag
-    },
-    {
-      "tag": "🇺🇸 United States",
-      "type": "selector",
-      "outbounds": ["direct"]  // 加美國節點 tag
-    },
-    // 服務分類（匯入後把相關 tag 加進去）
-    {
-      "tag": "AI Services",
-      "type": "selector",
-      "outbounds": ["direct"]  // 加適合 AI 的節點 tag（如美國、日本等）
-    },
-    {
-      "tag": "Streaming",
-      "type": "selector",
-      "outbounds": ["direct"]  // 加適合 Netflix/Disney 的節點 tag
-    },
-    {
-      "tag": "Google Services",
-      "type": "selector",
-      "outbounds": ["direct"]  // 加適合 Google 的節點 tag
-    },
-    {
-      "tag": "Youtube",
-      "type": "selector",
-      "outbounds": ["direct"]
-    },
-    {
-      "tag": "Telegram",
-      "type": "selector",
-      "outbounds": ["direct"]
     },
     {
       "tag": "direct",
