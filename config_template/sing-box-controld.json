@@ -65,7 +65,7 @@
   "outbounds": [
     {
       "tag": "PROXY",
-      "type": "select",
+      "type": "selector",
       "outbounds": [
         "AUTO",
         "{all}",
@@ -176,7 +176,7 @@
     },
     {
       "tag": "GLOBAL",
-      "type": "select",
+      "type": "selector",
       "outbounds": [
         "PROXY",
         "DIRECT",
