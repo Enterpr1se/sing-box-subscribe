@@ -19,11 +19,6 @@
         "server": "dns.alidns.com",
         "path": "/dns-query",
         "detour": "direct"
-      },
-      {
-        "tag": "dns_block",
-        "type": "rcode",
-        "rcode": "success"
       }
     ],
     "rules": [
