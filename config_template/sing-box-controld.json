@@ -8,17 +8,22 @@
     "servers": [
       {
         "tag": "dns_controld",
-        "address": "https://freedns.controld.com/p0",
+        "type": "https",
+        "server": "freedns.controld.com",
+        "path": "/p0",
         "detour": "PROXY"
       },
       {
         "tag": "dns_direct",
-        "address": "https://dns.alidns.com/dns-query",
+        "type": "https",
+        "server": "dns.alidns.com",
+        "path": "/dns-query",
         "detour": "direct"
       },
       {
         "tag": "dns_block",
-        "address": "rcode://success"
+        "type": "rcode",
+        "rcode": "success"
       }
     ],
     "rules": [
