@@ -84,7 +84,19 @@
         "🇯🇵 日本節點",
         "🇸🇬 新加坡節點",
         "🇰🇷 韓國節點",
-        "🇺🇸 美國節點"
+        "🇺🇸 美國節點",
+        "🇬🇧 英國節點",
+        "🇩🇪 德國節點",
+        "🇫🇷 法國節點",
+        "🇦🇺 澳洲節點",
+        "🇨🇦 加拿大節點",
+        "🇮🇳 印度節點",
+        "🇲🇾 馬來西亞節點",
+        "🇹🇭 泰國節點",
+        "🇵🇭 菲律賓節點",
+        "🇷🇺 俄羅斯節點",
+        "🇹🇷 土耳其節點",
+        "🇦🇷 阿根廷節點"
       ]
     },
     {
@@ -181,6 +193,174 @@
         {
           "action": "include",
           "keywords": ["(?i)US|America|United States|美国|美"]
+        }
+      ]
+    },
+    {
+      "tag": "🇬🇧 英國節點",
+      "type": "urltest",
+      "outbounds": [
+        "{all}",
+        "direct"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": ["(?i)UK|United Kingdom|Britain|英国|英"]
+        }
+      ]
+    },
+    {
+      "tag": "🇩🇪 德國節點",
+      "type": "urltest",
+      "outbounds": [
+        "{all}",
+        "direct"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": ["(?i)DE|Germany|德国|德"]
+        }
+      ]
+    },
+    {
+      "tag": "🇫🇷 法國節點",
+      "type": "urltest",
+      "outbounds": [
+        "{all}",
+        "direct"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": ["(?i)FR|France|法国|法"]
+        }
+      ]
+    },
+    {
+      "tag": "🇦🇺 澳洲節點",
+      "type": "urltest",
+      "outbounds": [
+        "{all}",
+        "direct"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": ["(?i)AU|Australia|Sydney|澳大利亚|澳洲|澳"]
+        }
+      ]
+    },
+    {
+      "tag": "🇨🇦 加拿大節點",
+      "type": "urltest",
+      "outbounds": [
+        "{all}",
+        "direct"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": ["(?i)CA|Canada|加拿大"]
+        }
+      ]
+    },
+    {
+      "tag": "🇮🇳 印度節點",
+      "type": "urltest",
+      "outbounds": [
+        "{all}",
+        "direct"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": ["(?i)IN|India|Mumbai|印度|印"]
+        }
+      ]
+    },
+    {
+      "tag": "🇲🇾 馬來西亞節點",
+      "type": "urltest",
+      "outbounds": [
+        "{all}",
+        "direct"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": ["(?i)MY|Malaysia|马来西亚|大马"]
+        }
+      ]
+    },
+    {
+      "tag": "🇹🇭 泰國節點",
+      "type": "urltest",
+      "outbounds": [
+        "{all}",
+        "direct"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": ["(?i)TH|Thailand|泰国|泰"]
+        }
+      ]
+    },
+    {
+      "tag": "🇵🇭 菲律賓節點",
+      "type": "urltest",
+      "outbounds": [
+        "{all}",
+        "direct"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": ["(?i)PH|Philippines|菲律宾|菲"]
+        }
+      ]
+    },
+    {
+      "tag": "🇷🇺 俄羅斯節點",
+      "type": "urltest",
+      "outbounds": [
+        "{all}",
+        "direct"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": ["(?i)RU|Russia|俄罗斯|俄"]
+        }
+      ]
+    },
+    {
+      "tag": "🇹🇷 土耳其節點",
+      "type": "urltest",
+      "outbounds": [
+        "{all}",
+        "direct"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": ["(?i)TR|Turkey|土耳其"]
+        }
+      ]
+    },
+    {
+      "tag": "🇦🇷 阿根廷節點",
+      "type": "urltest",
+      "outbounds": [
+        "{all}",
+        "direct"
+      ],
+      "filter": [
+        {
+          "action": "include",
+          "keywords": ["(?i)AR|Argentina|阿根廷"]
         }
       ]
     },
