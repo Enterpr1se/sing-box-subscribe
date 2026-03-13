@@ -1,435 +1,202 @@
 {
   "log": {
     "disabled": false,
-    "level": "debug",
+    "level": "info",
     "timestamp": true
   },
   "dns": {
-    "independent_cache": true,
-    "rules": [
+    "servers": [
       {
-        "rule_set": "geosite-google-gemini",
-        "server": "controld"
+        "tag": "dns_controld",
+        "address": "https://freedns.controld.com/p0",
+        "detour": "PROXY"
       },
       {
-        "rule_set": "geosite-apple-intelligence",
-        "server": "controld"
+        "tag": "dns_direct",
+        "address": "https://dns.alidns.com/dns-query",
+        "detour": "direct"
+      },
+      {
+        "tag": "dns_block",
+        "address": "rcode://success"
+      }
+    ],
+    "rules": [
+      {
+        "outbound": "any",
+        "server": "dns_direct"
       },
       {
         "clash_mode": "direct",
-        "server": "aliDns"
+        "server": "dns_direct"
       },
       {
         "clash_mode": "global",
-        "server": "controld"
+        "server": "dns_controld"
       },
       {
         "rule_set": "geosite-cn",
-        "server": "aliDns"
-      },
-      {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          {
-            "rule_set": "geosite-geolocation-!cn",
-            "invert": true
-          },
-          {
-            "rule_set": "geoip-cn"
-          }
-        ],
-        "server": "aliDns",
-        "client_subnet": "1.0.1.0/24"
+        "server": "dns_direct"
       }
     ],
-    "servers": [
-      {
-        "tag": "local",
-        "type": "udp",
-        "server": "223.5.5.5"
-      },
-      {
-        "tag": "aliDns",
-        "type": "https",
-        "server": "dns.alidns.com",
-        "server_port": 443,
-        "path": "/dns-query",
-        "domain_resolver": "local",
-        "detour": "direct",
-        "tls": {
-          "enabled": true,
-          "server_name": "dns.alidns.com"
-        }
-      },
-      {
-        "tag": "controld",
-        "type": "h3",
-        "server": "dns.controld.com",
-        "server_port": 443,
-        "path": "/fmgnh2zg4y",
-        "domain_resolver": "local",
-        "detour": "direct",
-        "tls": {
-          "enabled": true,
-          "alpn": [
-            "h3"
-          ],
-          "server_name": "dns.controld.com"
-        }
-      },
-      {
-        "tag": "controld_https",
-        "type": "https",
-        "server": "dns.controld.com",
-        "server_port": 443,
-        "path": "/fmgnh2zg4y",
-        "domain_resolver": "local",
-        "detour": "direct",
-        "tls": {
-          "enabled": true,
-          "server_name": "dns.controld.com"
-        }
-      }
-    ],
-    "strategy": "ipv4_only",
-    "final": "controld_https"
-  },
-  "experimental": {
-    "cache_file": {
-      "enabled": true
-    },
-    "clash_api": {
-      "external_controller": "127.0.0.1:9090",
-      "secret": "",
-      "external_ui": "ui",
-      "external_ui_download_url": "https://github.com/MetaCubeX/metacubexd/archive/gh-pages.zip",
-      "external_ui_download_detour": "urltest",
-      "default_mode": "rule"
-    }
+    "final": "dns_controld",
+    "strategy": "ipv4_only"
   },
   "inbounds": [
     {
-      "address": [
-        "172.19.0.1/30",
-        "fdfe:dcba:9876::1/126"
-      ],
+      "type": "tun",
+      "tag": "tun-in",
+      "inet4_address": "172.19.0.1/30",
+      "inet6_address": "fd00::1/126",
+      "mtu": 9000,
       "auto_route": true,
-      "endpoint_independent_nat": true,
-      "mtu": 1500,
-      "strict_route": false,
-      "sniff": true,
+      "strict_route": true,
       "stack": "mixed",
-      "type": "tun"
+      "sniff": true
+    },
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "127.0.0.1",
+      "listen_port": 2080,
+      "sniff": true
     }
   ],
   "outbounds": [
     {
-      "tag": "🚀 Node Select",
+      "tag": "PROXY",
       "type": "selector",
-      "default": "⚡ Auto Select",
       "outbounds": [
-        "⚡ Auto Select",
-        "🖐️ Manual Switch",
-        "🌍 All Nodes",
-        "AI Services",
-        "Streaming",
-        "Google Services",
-        "Youtube",
-        "Telegram",
-        "🇭🇰 Hong Kong",
-        "🇹🇼 Taiwan",
-        "🇯🇵 Japan",
-        "🇰🇷 Korea",
-        "🇸🇬 Singapore",
-        "🇺🇸 United States",
-        "direct"
+        "AUTO",
+        "{all}",
+        "🇭🇰 香港節點",
+        "🇹🇼 台灣節點",
+        "🇯🇵 日本節點",
+        "🇸🇬 新加坡節點",
+        "🇰🇷 韓國節點",
+        "🇺🇸 美國節點"
       ]
     },
     {
-      "tag": "⚡ Auto Select",
+      "tag": "AUTO",
       "type": "urltest",
-      "outbounds": ["🌍 All Nodes"],
-      "url": "https://www.gstatic.com/generate_204",
-      "interval": "600s",
-      "tolerance": 50
-    },
-    {
-      "tag": "🖐️ Manual Switch",
-      "type": "selector",
-      "default": "🌍 All Nodes",
-      "outbounds": ["🌍 All Nodes"]
-    },
-    {
-      "tag": "🌍 All Nodes",
-      "type": "selector",
-      "default": "direct",
-      "outbounds": ["{all}"],
+      "outbounds": [
+        "{all}"
+      ],
       "filter": [
         {
           "action": "exclude",
-          "keywords": ["最新网址","剩余流量","距离下次重置","套餐到期","网址：","地址：","剩余","到期","流量","重置"]
+          "keywords": ["(?i)网站|地址|剩余|过期|时间|提示|Traffic|Expire"]
         }
       ]
     },
     {
-      "tag": "🇭🇰 Hong Kong",
-      "type": "selector",
-      "default": "direct",
-      "outbounds": ["{all}"],
+      "tag": "🇭🇰 香港節點",
+      "type": "urltest",
+      "outbounds": [
+        "{all}",
+        "direct"
+      ],
       "filter": [
         {
           "action": "include",
-          "keywords": ["🇭🇰|HK|hk|香港|港|Hong Kong|HongKong"]
+          "keywords": ["(?i)HK|Hong|Kong|香港|港"]
         }
       ]
     },
     {
-      "tag": "🇹🇼 Taiwan",
-      "type": "selector",
-      "default": "direct",
-      "outbounds": ["{all}"],
+      "tag": "🇹🇼 台灣節點",
+      "type": "urltest",
+      "outbounds": [
+        "{all}",
+        "direct"
+      ],
       "filter": [
         {
           "action": "include",
-          "keywords": ["🇹🇼|TW|tw|台湾|臺灣|台|Taiwan"]
+          "keywords": ["(?i)TW|Taiwan|台湾|臺|台"]
         }
       ]
     },
     {
-      "tag": "🇯🇵 Japan",
-      "type": "selector",
-      "default": "direct",
-      "outbounds": ["{all}"],
+      "tag": "🇯🇵 日本節點",
+      "type": "urltest",
+      "outbounds": [
+        "{all}",
+        "direct"
+      ],
       "filter": [
         {
           "action": "include",
-          "keywords": ["🇯🇵|JP|jp|日本|日|Japan"]
+          "keywords": ["(?i)JP|Japan|日本|日"]
         }
       ]
     },
     {
-      "tag": "🇰🇷 Korea",
-      "type": "selector",
-      "default": "direct",
-      "outbounds": ["{all}"],
+      "tag": "🇸🇬 新加坡節點",
+      "type": "urltest",
+      "outbounds": [
+        "{all}",
+        "direct"
+      ],
       "filter": [
         {
           "action": "include",
-          "keywords": ["🇰🇷|KR|kr|韓國|Korea|South Korea|韓"]
+          "keywords": ["(?i)SG|Singapore|狮城|新加坡|新"]
         }
       ]
     },
     {
-      "tag": "🇸🇬 Singapore",
-      "type": "selector",
-      "default": "direct",
-      "outbounds": ["{all}"],
+      "tag": "🇰🇷 韓國節點",
+      "type": "urltest",
+      "outbounds": [
+        "{all}",
+        "direct"
+      ],
       "filter": [
         {
           "action": "include",
-          "keywords": ["🇸🇬|SG|sg|新加坡|狮城|Singapore"]
+          "keywords": ["(?i)KR|Korea|KOR|首尔|韩|韓"]
         }
       ]
     },
     {
-      "tag": "🇺🇸 United States",
-      "type": "selector",
-      "default": "direct",
-      "outbounds": ["{all}"],
+      "tag": "🇺🇸 美國節點",
+      "type": "urltest",
+      "outbounds": [
+        "{all}",
+        "direct"
+      ],
       "filter": [
         {
           "action": "include",
-          "keywords": ["🇺🇸|US|us|美国|美國|United States|America"]
+          "keywords": ["(?i)US|America|United States|美国|美"]
         }
       ]
     },
     {
-      "tag": "AI Services",
+      "tag": "GLOBAL",
       "type": "selector",
-      "default": "🇺🇸 United States",
-      "outbounds": ["🇺🇸 United States", "🇯🇵 Japan", "🇰🇷 Korea"]
-    },
-    {
-      "tag": "Streaming",
-      "type": "selector",
-      "default": "🇭🇰 Hong Kong",
-      "outbounds": ["🇭🇰 Hong Kong", "🇯🇵 Japan", "🇺🇸 United States"]
-    },
-    {
-      "tag": "Google Services",
-      "type": "selector",
-      "default": "🇺🇸 United States",
-      "outbounds": ["🇺🇸 United States", "🇯🇵 Japan"]
-    },
-    {
-      "tag": "Youtube",
-      "type": "selector",
-      "default": "🇭🇰 Hong Kong",
-      "outbounds": ["🇭🇰 Hong Kong", "🇺🇸 United States"]
-    },
-    {
-      "tag": "Telegram",
-      "type": "selector",
-      "default": "🇭🇰 Hong Kong",
-      "outbounds": ["🇭🇰 Hong Kong", "🇸🇬 Singapore"]
+      "outbounds": [
+        "PROXY",
+        "direct",
+        "block"
+      ]
     },
     {
       "tag": "direct",
-      "type": "direct",
-      "domain_resolver": {
-        "server": "aliDns",
-        "rewrite_ttl": 60
-      }
+      "type": "direct"
+    },
+    {
+      "tag": "block",
+      "type": "block"
     }
   ],
   "route": {
-    "auto_detect_interface": true,
-    "default_domain_resolver": {
-      "server": "local",
-      "rewrite_ttl": 60
-    },
-    "rule_set": [
-      {
-        "format": "binary",
-        "tag": "geoip-cn",
-        "type": "remote",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs",
-        "download_detour": "urltest",
-        "update_interval": "300m"
-      },
-      {
-        "format": "binary",
-        "tag": "geosite-cn",
-        "type": "remote",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-geolocation-cn.srs",
-        "download_detour": "urltest",
-        "update_interval": "300m"
-      },
-      {
-        "format": "binary",
-        "tag": "geosite-geolocation-!cn",
-        "type": "remote",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-geolocation-!cn.srs",
-        "download_detour": "urltest",
-        "update_interval": "300m"
-      },
-      {
-        "format": "binary",
-        "tag": "geosite-google",
-        "type": "remote",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-google.srs",
-        "download_detour": "urltest",
-        "update_interval": "300m"
-      },
-      {
-        "format": "binary",
-        "tag": "geosite-google-gemini",
-        "type": "remote",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-google-gemini.srs",
-        "download_detour": "urltest",
-        "update_interval": "300m"
-      },
-      {
-        "format": "binary",
-        "tag": "geosite-facebook",
-        "type": "remote",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-facebook.srs",
-        "download_detour": "urltest",
-        "update_interval": "300m"
-      },
-      {
-        "format": "binary",
-        "tag": "geosite-whatsapp",
-        "type": "remote",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-whatsapp.srs",
-        "download_detour": "urltest",
-        "update_interval": "300m"
-      },
-      {
-        "format": "binary",
-        "tag": "geosite-telegram",
-        "type": "remote",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-telegram.srs",
-        "download_detour": "urltest",
-        "update_interval": "300m"
-      },
-      {
-        "format": "binary",
-        "tag": "geosite-threads",
-        "type": "remote",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-threads.srs",
-        "download_detour": "urltest",
-        "update_interval": "300m"
-      },
-      {
-        "format": "binary",
-        "tag": "geosite-apple-intelligence",
-        "type": "remote",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-apple-intelligence.srs",
-        "download_detour": "urltest",
-        "update_interval": "300m"
-      },
-      {
-        "format": "binary",
-        "tag": "geosite-x",
-        "type": "remote",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-x.srs",
-        "download_detour": "urltest",
-        "update_interval": "300m"
-      },
-      {
-        "format": "binary",
-        "tag": "geosite-xai",
-        "type": "remote",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-xai.srs",
-        "download_detour": "urltest",
-        "update_interval": "300m"
-      },
-      {
-        "format": "binary",
-        "tag": "geosite-twitter",
-        "type": "remote",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-twitter.srs",
-        "download_detour": "urltest",
-        "update_interval": "300m"
-      },
-      {
-        "format": "binary",
-        "tag": "geosite-tvb",
-        "type": "remote",
-        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-tvb.srs",
-        "download_detour": "urltest",
-        "update_interval": "300m"
-      }
-    ],
     "rules": [
       {
-        "action": "sniff"
-      },
-      {
-        "action": "hijack-dns",
-        "protocol": "dns"
-      },
-      {
-        "action": "resolve",
-        "strategy": "prefer_ipv4"
-      },
-      {
-        "rule_set": [
-          "geosite-google",
-          "geosite-google-gemini",
-          "geosite-facebook",
-          "geosite-whatsapp",
-          "geosite-telegram",
-          "geosite-threads",
-          "geosite-apple-intelligence",
-          "geosite-x",
-          "geosite-xai",
-          "geosite-twitter",
-          "geosite-tvb"
-        ],
-        "outbound": "🚀 Node Select"
+        "protocol": "dns",
+        "action": "hijack-dns"
       },
       {
         "clash_mode": "direct",
@@ -437,21 +204,47 @@
       },
       {
         "clash_mode": "global",
-        "outbound": "🚀 Node Select"
+        "outbound": "GLOBAL"
+      },
+      {
+        "rule_set": "geoip-cn",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geosite-cn",
+        "outbound": "direct"
       },
       {
         "ip_is_private": true,
         "outbound": "direct"
-      },
-      {
-        "outbound": "direct",
-        "rule_set": "geoip-cn"
-      },
-      {
-        "outbound": "direct",
-        "rule_set": "geosite-cn"
       }
     ],
-    "final": "🚀 Node Select"
+    "rule_set": [
+      {
+        "tag": "geoip-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs",
+        "download_detour": "PROXY"
+      },
+      {
+        "tag": "geosite-cn",
+        "type": "remote",
+        "format": "binary",
+        "url": "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-cn.srs",
+        "download_detour": "PROXY"
+      }
+    ],
+    "final": "PROXY",
+    "auto_detect_interface": true
+  },
+  "experimental": {
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "ui",
+      "external_ui_download_url": "https://github.com/MetaCubeX/Yacd-meta/archive/gh-pages.zip",
+      "external_ui_download_detour": "PROXY",
+      "default_mode": "rule"
+    }
   }
 }
