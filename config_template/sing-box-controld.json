@@ -250,7 +250,8 @@
       }
     ],
     "final": "PROXY",
-    "auto_detect_interface": true
+    "auto_detect_interface": true,
+    "default_domain_resolver": "dns_resolver"
   },
   "experimental": {
     "clash_api": {
