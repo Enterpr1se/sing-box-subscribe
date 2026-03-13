@@ -32,11 +32,13 @@
   {
     "tag": "🖐️ Manual Switch",
     "type": "selector",
+    "default": "🌍 All Nodes",
     "outbounds": ["🌍 All Nodes"]
   },
   {
     "tag": "🌍 All Nodes",
     "type": "selector",
+    "default": "direct",
     "outbounds": ["{all}"],
     "filter": [
       {
@@ -48,6 +50,7 @@
   {
     "tag": "🇭🇰 Hong Kong",
     "type": "selector",
+    "default": "direct",
     "outbounds": ["{all}"],
     "filter": [
       {
@@ -59,6 +62,7 @@
   {
     "tag": "🇹🇼 Taiwan",
     "type": "selector",
+    "default": "direct",
     "outbounds": ["{all}"],
     "filter": [
       {
@@ -70,6 +74,7 @@
   {
     "tag": "🇯🇵 Japan",
     "type": "selector",
+    "default": "direct",
     "outbounds": ["{all}"],
     "filter": [
       {
@@ -81,6 +86,7 @@
   {
     "tag": "🇰🇷 Korea",
     "type": "selector",
+    "default": "direct",
     "outbounds": ["{all}"],
     "filter": [
       {
@@ -92,6 +98,7 @@
   {
     "tag": "🇸🇬 Singapore",
     "type": "selector",
+    "default": "direct",
     "outbounds": ["{all}"],
     "filter": [
       {
@@ -103,6 +110,7 @@
   {
     "tag": "🇺🇸 United States",
     "type": "selector",
+    "default": "direct",
     "outbounds": ["{all}"],
     "filter": [
       {
@@ -114,26 +122,31 @@
   {
     "tag": "AI Services",
     "type": "selector",
+    "default": "🇺🇸 United States",
     "outbounds": ["🇺🇸 United States", "🇯🇵 Japan", "🇰🇷 Korea"]
   },
   {
     "tag": "Streaming",
     "type": "selector",
+    "default": "🇭🇰 Hong Kong",
     "outbounds": ["🇭🇰 Hong Kong", "🇯🇵 Japan", "🇺🇸 United States"]
   },
   {
     "tag": "Google Services",
     "type": "selector",
+    "default": "🇺🇸 United States",
     "outbounds": ["🇺🇸 United States", "🇯🇵 Japan"]
   },
   {
     "tag": "Youtube",
     "type": "selector",
+    "default": "🇭🇰 Hong Kong",
     "outbounds": ["🇭🇰 Hong Kong", "🇺🇸 United States"]
   },
   {
     "tag": "Telegram",
     "type": "selector",
+    "default": "🇭🇰 Hong Kong",
     "outbounds": ["🇭🇰 Hong Kong", "🇸🇬 Singapore"]
   },
   {
