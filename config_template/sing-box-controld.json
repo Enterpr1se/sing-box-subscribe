@@ -12,14 +12,14 @@
         "server": "dns.controld.com",
         "path": "/fmgnh2zg4y",
         "detour": "PROXY",
-        "address_resolver": "dns_resolver"
+        "domain_resolver": "dns_resolver"
       },
       {
         "tag": "dns_direct",
         "type": "https",
         "server": "dns.alidns.com",
         "path": "/dns-query",
-        "address_resolver": "dns_resolver"
+        "domain_resolver": "dns_resolver"
       },
       {
         "tag": "dns_resolver",
